@@ -3,7 +3,9 @@ Debian 7/8 Install :
 First the Docker-Engine (For More https://docs.docker.com/engine/installation/linux/debian/ )
 
 apt-get update 
+
 apt-get install apt-transport-https ca-certificates
+
 apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 Open the /// nano /etc/apt/sources.list.d/docker.list /// file in your favorite editor. (I use nano)
@@ -39,19 +41,31 @@ at the end of /etc/apt/sources.list and
 apt-get update && apt-get install init-system-helpers && apt-get install docker-engine
 
 sudo service docker start
+
 sudo docker run hello-world
 
 adduser tsbot
+
 sudo usermod -aG docker tsbot
+
 cd /home/tsbot/
 
 wget https://github.com/danyrasta/ts3music-the-best/blob/master/master.zip
+
 apt-get install unzip
+
+cd /home/tsbot/sinusbot-master
+
 unzip master.zip
+
 chmod +x entrypoint.sh
+
 docker build -t ts3soundboard098 /home/tsbot/sinusbot-master/
+
 su tsbot
+
 cd /home/tsbot/sinusbot-master/
+
 START DOCKERS/SINUSBOT INSTANCES!
 
 docker run --restart=always -d --name bot1 -p 8087:8087 ts3soundboard098
